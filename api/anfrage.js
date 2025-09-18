@@ -14,7 +14,7 @@ cloudinary.config({
 })
 
 // Configure email transporter
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: parseInt(process.env.SMTP_PORT),
   secure: process.env.SMTP_SECURE === 'true',
@@ -166,27 +166,31 @@ function rateLimitMiddleware(req) {
 }
 
 export default async function handler(req, res) {
-  // Set CORS headers
+  // ✅ CORS
+  const allowedOrigins = [
+    'https://filip-bonat-deploy.vercel.app',
+    // opcional: previews
+    'https://filip-bonat-deploy-*.vercel.app'
+  ]
+
+  const origin = req.headers.origin
+  if (allowedOrigins.includes(origin) || origin?.includes('vercel.app')) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
+
   res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
 
   if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
+    return res.status(200).end()
   }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Method not allowed' })
-  }
-
-  // Rate limiting
-  if (!rateLimitMiddleware(req)) {
-    return res.status(429).json({
-      success: false,
-      message: 'Too many requests, please try again later'
-    })
   }
 
   try {
