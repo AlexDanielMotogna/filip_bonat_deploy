@@ -92,11 +92,7 @@ async function findOrCreateUser(userData) {
         data: {
           name: userData.name,
           email: userData.email,
-          phone: userData.phone || '',
-          message: userData.message || '',
-          unterlagen: userData.unterlagen || '',
-          category: userData.category || '',
-          subcategory: userData.subcategory || ''
+          phone: userData.phone || ''
         }
       })
     }
@@ -154,7 +150,7 @@ function rateLimitMiddleware(req) {
   const clientIP = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown'
   const now = Date.now()
   const windowMs = 15 * 60 * 1000 // 15 minutes
-  const maxRequests = 5
+  const maxRequests = 100 // TEMPORARILY INCREASED FOR TESTING
 
   const clientData = requestCounts.get(clientIP)
 
@@ -221,6 +217,55 @@ export default async function handler(req, res) {
     }
 
     console.log('✅ Validation passed')
+
+    // Find or create user FIRST (like in schadenmeldung)
+    console.log('🔄 Finding or creating user...')
+    console.log('📋 User data:', { name, email, phone: phone || '' })
+    const user = await findOrCreateUser({
+      name,
+      email,
+      phone: phone || ''
+    })
+    console.log('✅ User found/created:', user.id)
+    console.log('👤 User details:', { id: user.id, name: user.name, email: user.email })
+
+    // Create anfrage submission BEFORE emails (like in schadenmeldung)
+    console.log('🔄 Creating AnfrageSubmission record...')
+    console.log('📋 AnfrageSubmission data:', {
+      name,
+      email,
+      phone: phone || '',
+      message: message || '',
+      unterlagen: unterlagen || '',
+      category: category || '',
+      subcategory: subcategory || '',
+      houseLink: houseLink || '',
+      userId: user.id
+    })
+    
+    const anfrageSubmission = await prisma.anfrageSubmission.create({
+      data: {
+        name,
+        email,
+        phone: phone || '',
+        message: message || '',
+        unterlagen: unterlagen || '',
+        category: category || '',
+        subcategory: subcategory || '',
+        houseLink: houseLink || '',
+        userId: user.id
+      }
+    })
+    console.log('✅ AnfrageSubmission created successfully!')
+    console.log('📄 AnfrageSubmission details:', {
+      id: anfrageSubmission.id,
+      name: anfrageSubmission.name,
+      email: anfrageSubmission.email,
+      category: anfrageSubmission.category,
+      subcategory: anfrageSubmission.subcategory,
+      userId: anfrageSubmission.userId,
+      createdAt: anfrageSubmission.createdAt
+    })
 
     // Process attachments if any
     let attachments = []
@@ -290,6 +335,17 @@ export default async function handler(req, res) {
               }
             }
 
+            // Save file to database
+            await prisma.file.create({
+              data: {
+                name: finalAttachment.filename,
+                originalName: file.name,
+                mimeType: finalAttachment.contentType,
+                size: finalAttachment.content.length,
+                anfrageId: anfrageSubmission.id
+              }
+            })
+
             return {
               filename: finalAttachment.filename,
               content: finalAttachment.content,
@@ -304,6 +360,7 @@ export default async function handler(req, res) {
             }
           })
         )
+        console.log('✅ Files processed and saved to database:', attachments.length)
       } catch (fileError) {
         console.error('Error processing files:', fileError)
         return res.status(400).json({
@@ -393,11 +450,15 @@ export default async function handler(req, res) {
     })
 
     console.log('✅ Client confirmation email sent successfully')
-    console.log('🎉 Both emails sent successfully')
+    console.log('🎉 Anfrage processed successfully - both emails sent and data saved to database')
 
     res.json({
       success: true,
-      message: 'Anfrage erfolgreich gesendet'
+      message: 'Anfrage erfolgreich gesendet',
+      data: {
+        id: anfrageSubmission.id,
+        createdAt: anfrageSubmission.createdAt
+      }
     })
 
   } catch (error) {

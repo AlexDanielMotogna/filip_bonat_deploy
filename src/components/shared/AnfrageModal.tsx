@@ -84,9 +84,16 @@ const AnfrageModal: React.FC<AnfrageModalProps> = ({ unterlagen, category, subca
       const result = await response.json()
       console.log('📥 AnfrageModal: Response data:', result)
 
+      // Check if the response indicates success
       if (!result.success) {
         console.error('❌ AnfrageModal: API Error:', result.message)
         throw new Error(result.message || 'An unexpected error occurred')
+      }
+
+      // Verify we have the data object with id
+      if (!result.data || !result.data.id) {
+        console.error('❌ AnfrageModal: No data.id in response')
+        throw new Error('Server did not return a valid response')
       }
 
       console.log('✅ AnfrageModal: API call successful')
