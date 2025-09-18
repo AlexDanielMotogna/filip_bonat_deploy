@@ -14,18 +14,18 @@ El proyecto ahora utiliza un sistema centralizado y seguro para manejar variable
 
 #### **Variables Requeridas**:
 ```
-DATABASE_URL=mongodb+srv://...
-SMTP_HOST=smtp.hostinger.com
+DATABASE_URL=mongodb+srv://your-username:your-password@your-cluster.mongodb.net/your-database
+SMTP_HOST=your-smtp-host
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USER=website@filip-bonat.at
-SMTP_PASS=BlackBorne2593@
-SMTP_FROM=website@filip-bonat.at
-ANFRAGE_RECIPIENT_EMAIL=alexdanielmotogna@gmail.com
-SCHADEN_RECIPIENT_EMAIL=alexdanielmotogna@gmail.com
-CLOUDINARY_CLOUD_NAME=doaiuthjn
-CLOUDINARY_API_KEY=815762748345462
-CLOUDINARY_API_SECRET=eGLvREtJvjLupf0VUYWOyQ4Q_9Q
+SMTP_USER=your-email@your-domain.com
+SMTP_PASS=your-email-password
+SMTP_FROM=your-email@your-domain.com
+ANFRAGE_RECIPIENT_EMAIL=recipient@your-domain.com
+SCHADEN_RECIPIENT_EMAIL=recipient@your-domain.com
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
 ```
 
 ### 🛡️ Medidas de Seguridad Implementadas

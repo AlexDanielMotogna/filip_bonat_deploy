@@ -1,2 +1,0 @@
-alexdanielmotogna_db_user
-mogcAxThURVqt40z
