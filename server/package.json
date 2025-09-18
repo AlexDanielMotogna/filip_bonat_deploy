@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "dev": "ts-node index.ts",
+    "dev": "ts-node index.local.ts",
     "start": "node index.js",
     "build": "tsc",
+    "vercel": "ts-node index.ts",
     "postinstall": "prisma generate"
   },
   "keywords": [],
@@ -24,7 +25,8 @@
     "pdf-lib": "^1.17.1",
     "prisma": "^6.16.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "serverless-http": "^4.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
