@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useFormSubmission } from '../hooks/useFormSubmission'
 import { validateKreditAnfrageForm, type KreditAnfrageFormData } from '../utils/formValidators'
 import { API_ENDPOINTS } from '../config/api'
@@ -37,7 +36,7 @@ interface SubmissionData {
 }
 
 const KreditAnfrageModal: React.FC<KreditAnfrageModalProps> = ({ show, onClose, kreditDetails }) => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   const [formData, setFormData] = useState({
     name: '',

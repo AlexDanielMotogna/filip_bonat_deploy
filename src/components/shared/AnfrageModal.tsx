@@ -5,7 +5,7 @@ import { useFileUpload } from '../../hooks/useFileUpload'
 import { API_ENDPOINTS } from '../../config/api'
 import { groupDocuments } from '../../utils/documentGrouping'
 import { validateAnfrageForm, type AnfrageFormData } from '../../utils/formValidators'
-import { validateTotalFileSizeWithPdfConversion, formatBytes, isApproachingLimit } from '../../utils/fileSizeValidation'
+import { validateTotalFileSizeWithPdfConversion, isApproachingLimit } from '../../utils/fileSizeValidation'
 import SuccessModal from '../SuccessModal'
 import FileUploadItem from "../FileUploadItem"
 import DatenschutzCheckbox from "../DatenschutzCheckbox"
@@ -48,12 +48,12 @@ const AnfrageModal: React.FC<AnfrageModalProps> = ({ unterlagen, category, subca
   })
   const [acceptedDatenschutz, setAcceptedDatenschutz] = useState(false)
   const [datenschutzError, setDatenschutzError] = useState(false)
-  const [isProcessingFiles, setIsProcessingFiles] = useState(false)
-  const [fileProcessingProgress, setFileProcessingProgress] = useState<{
-    current: number
-    total: number
-    currentFileName: string
-  } | null>(null)
+  // const [isProcessingFiles, setIsProcessingFiles] = useState(false)
+  // const [fileProcessingProgress, setFileProcessingProgress] = useState<{
+  //   current: number
+  //   total: number
+  //   currentFileName: string
+  // } | null>(null)
 
   const { uploadProgress, processFile } = useFileUpload()
 
@@ -179,24 +179,7 @@ const AnfrageModal: React.FC<AnfrageModalProps> = ({ unterlagen, category, subca
 
       if (uploadedDocsEntries.length > 0) {
         console.log('📁 Processing files:', uploadedDocsEntries.length, 'files')
-        setIsProcessingFiles(true)
-
-        for (let i = 0; i < uploadedDocsEntries.length; i++) {
-          const [name, doc] = uploadedDocsEntries[i]
-          if (doc) {
-            setFileProcessingProgress({
-              current: i + 1,
-              total: uploadedDocsEntries.length,
-              currentFileName: doc.file.name
-            })
-            console.log(`📁 Processing file ${i + 1}/${uploadedDocsEntries.length}: ${doc.file.name}`)
-            // Files are already processed in handleFileUpload, so we just show progress
-            await new Promise(resolve => setTimeout(resolve, 100)) // Small delay for visual feedback
-          }
-        }
-
-        setIsProcessingFiles(false)
-        setFileProcessingProgress(null)
+        // Files are already processed in handleFileUpload
       }
 
       const submissionData: SubmissionData = {
@@ -230,8 +213,6 @@ const AnfrageModal: React.FC<AnfrageModalProps> = ({ unterlagen, category, subca
         uploadedDocs: {}
       })
       setAcceptedDatenschutz(false)
-      setIsProcessingFiles(false)
-      setFileProcessingProgress(null)
     } catch (error) {
       console.error('Error submitting form:', error)
     }

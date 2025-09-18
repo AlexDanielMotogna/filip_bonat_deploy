@@ -1,12 +1,11 @@
 // components/SchadenMeldungModal.tsx
 'use client'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { API_ENDPOINTS } from '../config/api'
 import { useFileUpload } from '../hooks/useFileUpload'
 import { useFormSubmission } from '../hooks/useFormSubmission'
 import { validateSchadenMeldungForm, type SchadenMeldungFormData } from '../utils/formValidators'
-import { validateTotalFileSizeWithPdfConversion, formatBytes, isApproachingLimit } from '../utils/fileSizeValidation'
+import { validateTotalFileSizeWithPdfConversion, formatBytes } from '../utils/fileSizeValidation'
 import DatenschutzCheckbox from './DatenschutzCheckbox'
 import SuccessModal from './SuccessModal'
 
@@ -40,7 +39,7 @@ interface SubmissionData {
 }
 
 export default function SchadenMeldungModal({ show, onClose }: SchadenMeldungModalProps) {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -61,7 +60,7 @@ export default function SchadenMeldungModal({ show, onClose }: SchadenMeldungMod
     currentFileName: string
   } | null>(null)
 
-  const { uploadProgress, processFile } = useFileUpload()
+  const { processFile } = useFileUpload()
 
   const submitSchadenMeldung = async (data: SubmissionData) => {
     console.log('🌐 SchadenMeldung: Making API call to:', API_ENDPOINTS.SCHADENMELDUNG)
@@ -392,14 +391,9 @@ export default function SchadenMeldungModal({ show, onClose }: SchadenMeldungMod
 
                   // Calculate total size directly from File objects (more accurate)
                   let totalSize = 0
-                  const files = formData.images.map(file => {
+                  formData.images.forEach(file => {
                     const estimatedPdfSize = file.type.startsWith('image/') ? Math.round(file.size * 1.4) : file.size
                     totalSize += estimatedPdfSize
-                    return {
-                      filename: `${file.name}${file.type.startsWith('image/') ? ' (→ PDF)' : ''}`,
-                      size: estimatedPdfSize,
-                      sizeFormatted: formatBytes(estimatedPdfSize)
-                    }
                   })
 
                   const maxSize = 25 * 1024 * 1024 // 25MB
