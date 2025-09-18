@@ -3,7 +3,7 @@
  * Centralized API endpoints and configuration
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://filip-bonat-deploy.vercel.app/'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://filip-bonat-deploy.vercel.app'
 
 export const API_ENDPOINTS = {
   ANFRAGE: `${API_BASE_URL}/api/anfrage`,
