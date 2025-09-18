@@ -8,11 +8,10 @@ import { handleKreditAnfrage } from "./kredit-anfrage.js";
 
 const app = express();
 
-// ✅ CORS configurado
 app.use(cors({
   origin: [
     "https://filip-bonat-deploy.vercel.app",
-    /\.vercel\.app$/ // permite todos los previews
+    /\.vercel\.app$/ 
   ],
   credentials: true
 }));
@@ -29,5 +28,5 @@ app.get("/health", (req, res) => {
   res.json({ ok: true, time: new Date().toISOString() });
 });
 
-// ⚠️ Exportar handler para Vercel
+// Exportar handler para Vercel
 export const handler = serverless(app);
