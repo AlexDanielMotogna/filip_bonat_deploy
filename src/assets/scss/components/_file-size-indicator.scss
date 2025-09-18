@@ -1,0 +1,106 @@
+/**
+ * File Size Indicator Component Styles
+ * Visual indicator for total file size and email attachment limits
+ */
+
+.file-size-indicator {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+
+  .size-info {
+    &.normal {
+      border-left: 4px solid #28a745;
+    }
+
+    &.warning {
+      border-left: 4px solid #ffc107;
+      background-color: #fff3cd;
+    }
+
+    &.error {
+      border-left: 4px solid #dc3545;
+      background-color: #f8d7da;
+    }
+  }
+
+  .size-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+
+    .size-label {
+      font-weight: 500;
+      color: #495057;
+    }
+
+    .size-value {
+      font-weight: 600;
+      color: #212529;
+      font-family: 'Courier New', monospace;
+    }
+  }
+
+  .size-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+
+    .size-progress {
+      height: 100%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+      border-radius: 4px;
+    }
+  }
+
+  .size-error,
+  .size-warning {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .size-error {
+    color: #721c24;
+  }
+
+  .size-warning {
+    color: #856404;
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .size-text {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+
+      .size-value {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// Animation for when the indicator appears
+.file-size-indicator {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "🚀 Iniciando servidor backend..."
+cd server
+echo "📦 Instalando dependencias si es necesario..."
+npm install
+echo "🔄 Iniciando servidor en modo desarrollo..."
+npm run dev

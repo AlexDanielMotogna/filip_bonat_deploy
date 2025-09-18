@@ -1,0 +1,97 @@
+// ...existing code...
+
+.main-btn-area.small-buttons {
+  display: flex;
+  gap: 16px;
+  
+  .btn-sm {
+    flex: 1;
+    padding: 16px 32px;
+    border-radius: 52px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--ztc-family-font1);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px; 
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    &:hover::before {
+      left: 100%;
+    }
+    
+    &.btn-privat {
+      background: var(--ztc-bg-btn-bg1);
+      color: var(--ztc-text-btn-text1);
+      border: 1px solid var(--ztc-bg-btn-bg1);
+      
+      &:hover {
+        color: var(--ztc-text-text-1);
+        border: 1px solid var(--ztc-text-text-1);
+        background: transparent;
+        transform: translateY(-2px);
+      }
+    }
+    
+    &.btn-firma {
+      background: transparent;
+      color: var(--ztc-text-text-1);
+      border: 1px solid rgba(6, 29, 30, 0.3);
+      
+      &:hover {
+        background: rgba(6, 29, 30, 0.1);
+        border-color: var(--ztc-text-text-1);
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* por encima del modal principal */
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+// Import file size indicator styles
+@import 'file-size-indicator';

@@ -1,0 +1,281 @@
+.datenschutz-page {
+  padding: 80px 0 60px;
+  background: #f8f9fa;
+  min-height: 100vh;
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .last-updated {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 3rem;
+    font-size: 0.9rem;
+  }
+
+  .datenschutz-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 3rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .datenschutz-section {
+    margin-bottom: 3rem;
+
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #4AC082;
+      
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #34495e;
+      margin: 2rem 0 1rem 0;
+      
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+
+      li {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 0.5rem;
+
+        strong {
+          color: #2c3e50;
+          font-weight: 600;
+        }
+      }
+    }
+
+    a {
+      color: #4AC082;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #3a9b6f;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .contact-info {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+
+    p {
+      margin-bottom: 0.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      color: #2c3e50;
+    }
+  }
+
+  .back-button-container {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+
+    .btn {
+      background: #4AC082;
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(74, 192, 130, 0.3);
+
+      &:hover {
+        background: #3a9b6f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(74, 192, 130, 0.4);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(74, 192, 130, 0.25);
+      }
+    }
+  }
+
+  // Responsive improvements
+  @media (max-width: 992px) {
+    padding: 60px 0 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 0 30px;
+
+    .datenschutz-content {
+      margin: 0 15px 2rem;
+    }
+  }
+
+  // Print styles
+  @media print {
+    .back-button-container {
+      display: none;
+    }
+
+    .datenschutz-content {
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
+
+    .page-title {
+      color: #000;
+    }
+
+    .datenschutz-section {
+      h2 {
+        color: #000;
+        border-bottom-color: #000;
+      }
+
+      h3 {
+        color: #000;
+      }
+
+      p, li {
+        color: #000;
+      }
+
+      a {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Accessibility improvements
+  .datenschutz-section {
+    h2:focus,
+    h3:focus {
+      outline: 2px solid #4AC082;
+      outline-offset: 2px;
+    }
+  }
+
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    .datenschutz-content {
+      border: 2px solid #000;
+    }
+
+    .datenschutz-section {
+      h2 {
+        border-bottom-color: #000;
+      }
+
+      a {
+        color: #0066cc;
+        text-decoration: underline;
+      }
+    }
+
+    .contact-info {
+      border-color: #000;
+    }
+  }
+
+  // Dark mode support (if implemented)
+  @media (prefers-color-scheme: dark) {
+    background: #1a1a1a;
+
+    .datenschutz-content {
+      background: #2d2d2d;
+      color: #e0e0e0;
+    }
+
+    .page-title {
+      color: #ffffff;
+    }
+
+    .last-updated {
+      color: #b0b0b0;
+    }
+
+    .datenschutz-section {
+      h2 {
+        color: #ffffff;
+      }
+
+      h3 {
+        color: #e0e0e0;
+      }
+
+      p, li {
+        color: #d0d0d0;
+      }
+
+      strong {
+        color: #ffffff;
+      }
+    }
+
+    .contact-info {
+      background: #3a3a3a;
+      border-color: #555;
+      color: #e0e0e0;
+
+      strong {
+        color: #ffffff;
+      }
+    }
+  }
+}

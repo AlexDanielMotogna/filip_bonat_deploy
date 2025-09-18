@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String              @id @default(auto()) @map("_id") @db.ObjectId
+  email       String              @unique(map: "idx_user_email")
+  name        String?
+  phone       String?
+  createdAt   DateTime            @default(now())
+  submissions AnfrageSubmission[] 
+  schadenMeldungen SchadenMeldung[] // Nueva relación
+
+  @@map("users")
+  @@index([name], map: "idx_user_name")
+  @@index([phone], map: "idx_user_phone")
+}
+
+model AnfrageSubmission {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String
+  phone        String?
+  message      String
+  unterlagen   String
+  category     String
+  subcategory  String
+  houseLink    String?
+  files        File[]
+  createdAt    DateTime @default(now())
+
+  // Relación con User (sin onDelete Cascade)
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+
+  @@map("anfrage_submissions")
+  @@index([email], map: "idx_submission_email")
+  @@index([category, subcategory], map: "idx_submission_category_subcategory")
+  @@index([createdAt], map: "idx_submission_createdAt")
+}
+
+model File {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  originalName        String?
+  mimeType            String?
+  size                Int?
+  cloudinaryUrl       String?
+  cloudinaryPublicId  String?
+
+  // Relaciones (sin onDelete Cascade)
+  anfrage   AnfrageSubmission? @relation(fields: [anfrageId], references: [id])
+  anfrageId String?            @db.ObjectId
+  
+  schadenMeldung SchadenMeldung? @relation(fields: [schadenMeldungId], references: [id])
+  schadenMeldungId String?       @db.ObjectId
+
+  @@map("files")
+  @@index([anfrageId], map: "idx_file_anfrage")
+  @@index([schadenMeldungId], map: "idx_file_schaden")
+  @@index([mimeType], map: "idx_file_mimeType")
+}
+
+model SchadenMeldung {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relación con el usuario (sin onDelete Cascade)
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  
+  // Campos del formulario
+  name        String
+  email       String
+  telefon     String
+  wiePassiert String
+  woPassiert  String
+  wannPassiert DateTime
+  
+  // Relación con imágenes
+  images      File[]
+
+  @@map("schadenmeldungen")
+  @@index([userId], map: "idx_schaden_user")
+  @@index([email], map: "idx_schaden_email")
+  @@index([createdAt], map: "idx_schaden_createdAt")
+}

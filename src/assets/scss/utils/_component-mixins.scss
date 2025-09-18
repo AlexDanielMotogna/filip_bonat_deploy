@@ -1,0 +1,270 @@
+// Component Mixins for Shared Styles
+
+// Card Base Mixin
+@mixin card-base {
+  background: var(--ztc-bg-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
+// Card Hover Effects
+@mixin card-hover {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Enhanced Card Hover (for special pages)
+@mixin card-hover-enhanced {
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Modal Base Styles
+@mixin modal-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+// Modal Content
+@mixin modal-content {
+  background: var(--ztc-bg-modal-bg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+// Modal Header
+@mixin modal-header {
+  padding: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ztc-text-text-2);
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--ztc-text-text-2);
+    
+    &:hover {
+      color: var(--ztc-bg-btn-bg1);
+    }
+  }
+}
+
+// Button Base Styles
+@mixin button-primary {
+  display: inline-block;
+  padding: 15px 30px;
+  background: var(--ztc-bg-btn-bg1);
+  color: var(--ztc-text-text-1);
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--ztc-bg-btn-bg2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Tab Button Styles
+@mixin tab-button {
+  padding: 12px 24px;
+  border: 2px solid var(--ztc-bg-btn-bg1);
+  background: transparent;
+  color: var(--ztc-bg-btn-bg1);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &.active,
+  &:hover {
+    background: var(--ztc-bg-btn-bg1);
+    color: var(--ztc-text-text-1);
+  }
+}
+
+// Page Header Styles
+@mixin page-header {
+  text-align: center;
+  margin-bottom: 60px;
+  
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--ztc-text-text-1);
+    margin-bottom: 20px;
+    
+    span {
+      color: var(--ztc-bg-btn-bg1);
+    }
+  }
+  
+  p {
+    font-size: 18px;
+    color: var(--ztc-text-text-1);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Grid Layout
+@mixin responsive-grid($min-width: 280px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: 30px;
+}
+
+// Icon Styles
+@mixin icon-base($size: 50px) {
+  font-size: $size;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+// Text Styles
+@mixin card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ztc-text-text-3);
+  margin-bottom: 15px;
+}
+
+@mixin card-text {
+  color: var(--ztc-text-text-3);
+  opacity: 0.8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+// Form Input Styles
+@mixin form-input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: var(--ztc-bg-card-bg);
+  color: var(--ztc-text-text-2);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--ztc-bg-btn-bg1);
+    box-shadow: 0 0 0 2px rgba(var(--ztc-bg-btn-bg1), 0.2);
+  }
+  
+  &::placeholder {
+    color: var(--ztc-text-text-2);
+    opacity: 0.6;
+  }
+}
+
+// Responsive Breakpoints
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
+// Animation Mixins
+@mixin fade-in($duration: 0.3s) {
+  opacity: 0;
+  animation: fadeIn $duration ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin slide-up($duration: 0.3s) {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp $duration ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Utility Mixins
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

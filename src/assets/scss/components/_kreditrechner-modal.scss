@@ -1,0 +1,47 @@
+.kreditrechner-btn {
+  border-radius: 52px !important;
+  background: #4ac082 !important;
+  color: #000000 !important;
+  font-family: var(--ztc-family-font1, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 14px 28px !important;
+  border: 1px solid transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: none !important; // Remove global transition
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10; // High z-index to prevent bleed
+
+  &:hover {
+    background: transparent !important;
+    color: #2e8b57 !important;
+    border: 1px solid #2e8b57 !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(74, 192, 130, 0.3);
+  }
+
+  &:active {
+    transform: translateY(1px) !important;
+  }
+}
+
+// Prevent navbar-wide effects
+.header-area.homepage1 .btn-area {
+  .kreditrechner-btn {
+    transition: none !important;
+    
+    &:hover, &:focus, &:active {
+      transform: none !important;
+    }
+  }
+}

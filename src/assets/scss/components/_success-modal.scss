@@ -1,0 +1,50 @@
+.success-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeInScale 0.3s ease-out;
+  z-index: 4000;
+}
+
+.success-modal h2 {
+  color: #16a34a; /* verde éxito */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.success-modal p {
+  color: #374151; /* gris oscuro */
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.success-modal .btn-primary {
+  background-color: #16a34a; /* verde Tailwind */
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.success-modal .btn-primary:hover {
+  background-color: #15803d; /* verde más oscuro */
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

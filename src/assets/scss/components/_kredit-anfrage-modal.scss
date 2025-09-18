@@ -1,0 +1,64 @@
+/* Kredit Anfrage Modal Styles */
+.kredit-summary {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.highlight {
+    background: #e8f5e8;
+    margin: 0 -10px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid #4AC082;
+    font-weight: 600;
+    color: #4AC082;
+  }
+
+  span {
+    font-size: 14px;
+    color: #666;
+  }
+
+  strong {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  &.highlight strong {
+    color: #4AC082;
+    font-size: 16px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .kredit-summary {
+    padding: 15px;
+  }
+
+  .summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    &.highlight {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

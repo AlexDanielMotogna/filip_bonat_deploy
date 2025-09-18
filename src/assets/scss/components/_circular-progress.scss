@@ -1,0 +1,46 @@
+/* Circular Progress Loader */
+.circular-progress-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.circular-progress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.progress-ring {
+  width: 24px;
+  height: 24px;
+  color: #007bff;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.3s ease;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.progress-text {
+  position: absolute;
+  font-size: 8px;
+  font-weight: 600;
+  color: #007bff;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Animation for the circular progress */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.circular-progress.spinning .progress-ring {
+  animation: spin 1s linear infinite;
+}

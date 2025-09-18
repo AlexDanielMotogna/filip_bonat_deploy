@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String              @id @default(auto()) @map("_id") @db.ObjectId
+  email       String              @unique(map: "idx_user_email") // 🔑 búsqueda rápida por email
+  name        String?
+  phone       String?              // opcionalmente limitar longitud
+  createdAt   DateTime            @default(now())
+  submissions AnfrageSubmission[] 
+
+  @@map("users")
+  @@index([name], map: "idx_user_name") // búsquedas rápidas por nombre
+  @@index([phone], map: "idx_user_phone") // búsquedas rápidas por teléfono
+}
+
+model AnfrageSubmission {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String
+  phone        String?
+  message      String
+  unterlagen   String
+  category     String
+  subcategory  String
+  files        File[]
+  createdAt    DateTime @default(now())
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+
+  @@map("anfrage_submissions")
+
+  // 🔑 índices útiles para filtrar y ordenar submissions
+  @@index([email], map: "idx_submission_email")
+  @@index([category, subcategory], map: "idx_submission_category_subcategory")
+  @@index([createdAt], map: "idx_submission_createdAt") // para ordenar por fecha
+}
+
+model File {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  originalName        String?
+  mimeType            String?
+  size                Int?
+  cloudinaryUrl       String?
+  cloudinaryPublicId  String?
+
+  anfrage   AnfrageSubmission? @relation(fields: [anfrageId], references: [id])
+  anfrageId String?            @db.ObjectId
+
+  @@map("files")
+
+  // 🔑 índices para búsquedas rápidas de archivos
+  @@index([anfrageId], map: "idx_file_anfrage")
+  @@index([mimeType], map: "idx_file_mimeType")
+}

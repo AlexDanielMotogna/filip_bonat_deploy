@@ -1,0 +1,75 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Página-1" id="NLhNyDzJVGv_BLuXNx_o">
+    <mxGraphModel dx="983" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-10" value="Schadenmeldung" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="600" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-11" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="280" y="660" width="640" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-12" value="Name" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="710" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-13" value="Email" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="800" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-14" value="Telefon nummer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="890" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-16" value="Wo ist es passiert?" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="955" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-17" value="Wann ist es passiert?" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="1040" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-18" value="Wie ist es passiert?" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1130" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-19" value="Fotos hochladen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1230" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-20" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="650" width="610" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-21" value="Dokumenten Hochladen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1205" y="585" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-23" value="Name" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="690" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-24" value="Email" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="780" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-25" value="Telefon nummer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="870" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-26" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="970" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-27" value="Versicherung" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="950" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-28" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="970" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-29" value="Kredit" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="950" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-30" value="Daten Hochladen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="1070" width="300" height="60" as="geometry" />
+        </mxCell>
+        <UserObject label="https://universal.signosign.com/" link="https://universal.signosign.com/" id="f7RtkfyaFMAnBHSZGJBI-31">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="285" y="1350" width="630" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="f7RtkfyaFMAnBHSZGJBI-32" value="checkbox datenschutz" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="1270" width="610" height="87.14" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
