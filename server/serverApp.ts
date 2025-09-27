@@ -18,10 +18,14 @@ app.use(cors({
 
 // ✅ Body parser
 app.use(bodyParser.json({
-  limit: "25mb",
+  limit: "50mb",
   verify: (req: any, res, buf) => {
-    if (buf.length > 25 * 1024 * 1024) {
-      throw new Error("Request entity too large");
+    const sizeMB = (buf.length / 1024 / 1024).toFixed(2)
+    console.log(`📦 Received payload: ${sizeMB}MB`)
+
+
+    if (buf.length > 50 * 1024 * 1024) {
+      throw new Error(`Request too large: ${sizeMB}MB exceeds 50MB limit`);
     }
   }
 }));
