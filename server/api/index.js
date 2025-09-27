@@ -16,7 +16,17 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(bodyParser.json({ limit: "25mb" }));
+
+app.use(bodyParser.json({ 
+  limit: "50mb",
+  verify: (req, res, buf) => {
+    const sizeMB = (buf.length / 1024 / 1024).toFixed(2)
+    console.log(`📦 Request payload size: ${sizeMB}MB`)
+    if (buf.length > 50 * 1024 * 1024) {
+      throw new Error(`Request too large: ${sizeMB}MB exceeds 50MB limit`)
+    }
+  }
+}));
 
 // Rutas
 app.use("/api/anfrage", anfrageRoutes);
